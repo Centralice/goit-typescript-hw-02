@@ -1,6 +1,16 @@
 import s from "./ImageCard.module.css";
 
-const ImageCard = ({ picture, onPictureClick }) => {
+interface Picture {
+  urls: { small: string; regular: string };
+  alt_description: string;
+}
+
+type Props = {
+  picture: Picture;
+  onPictureClick: (url: string) => void;
+};
+
+const ImageCard = ({ picture, onPictureClick }: Props) => {
   return (
     <div>
       <img

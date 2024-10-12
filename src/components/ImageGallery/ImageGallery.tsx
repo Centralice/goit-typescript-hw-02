@@ -1,7 +1,18 @@
 import ImageCard from "./ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ pictures, onPictureClick}) => {
+interface Picture {
+  urls: { small: string; regular: string };
+  alt_description: string;
+  id: string;
+}
+
+type Props = {
+  pictures: Picture[];
+  onPictureClick: (url: string) => void;
+};
+
+const ImageGallery = ({ pictures, onPictureClick }: Props) => {
   return (
     <ul className={s.gallery}>
       {pictures.map((picture) => (
