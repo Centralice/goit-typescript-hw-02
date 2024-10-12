@@ -5,4 +5,6 @@ import "modern-normalize";
 import "./index.css";
 
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <App />
+);
