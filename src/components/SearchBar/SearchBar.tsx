@@ -1,15 +1,25 @@
 import { Formik, Form, Field } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import s from "./SearchBar.module.css";
+import { Picture } from "../App/App.types";
 
-const SearchBar = ({ setQuery, setResults }) => {
+interface SearchBarProps {
+  setQuery: (value: string) => void;
+  setResults: (value: Picture[] | ((prev: Picture[]) => Picture[])) => void;
+}
+
+interface Values {
+  query: string;
+}
+
+const SearchBar = ({ setQuery, setResults }: SearchBarProps) => {
   const notify = () => toast("I'm not a psychic you know...");
 
   const initialValues = {
     query: "",
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values: Values, actions: any): void => {
     if (values.query) {
       setQuery(values.query);
       actions.resetForm();

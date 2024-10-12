@@ -1,35 +1,35 @@
-import SearchBar from "./SearchBar/SearchBar";
-import ImageGallery from "./ImageGallery/ImageGallery";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
-import ImageModal from "./ImageModal/ImageModal";
-import Loader from "./Loader/Loader";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import { fetchData } from "../services/api";
-
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ImageModal from "../ImageModal/ImageModal";
+import Loader from "../Loader/Loader";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import { fetchData } from "../../services/api";
 import { useEffect, useState } from "react";
+import {Picture} from "./App.types"
 
 const App = () => {
-  const [results, setResults] = useState([]);
-  const [query, setQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const[selectedPicture, setSelectedPicture] = useState(null);
+  const [results, setResults] = useState<Picture[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [selectedPicture, setSelectedPicture] = useState<string | null>(null);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
+  // const openModal = () => {
+  //   setModalIsOpen(true);
+  // };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalIsOpen(false);
   };
 
-  const onPictureClick = (link) => {
-    setSelectedPicture(link);  
-    setModalIsOpen(true); 
-  }
+  const onPictureClick = (link: string): void => {
+    setSelectedPicture(link);
+    setModalIsOpen(true);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -50,7 +50,7 @@ const App = () => {
     getData();
   }, [query, page]);
 
-  const handleSetQuery = (query) => {
+  const handleSetQuery = (query: string): void => {
     setQuery(query);
     setResults([]);
     setPage(1);

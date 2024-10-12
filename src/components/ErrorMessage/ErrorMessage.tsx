@@ -1,10 +1,10 @@
 import s from "./ErrorMessage.module.css";
 
-type Props = {
+interface ErrorMessageProps {
   error: boolean;
-};
+}
 
-const ErrorMessage = ({ error }: Props) => {
+const ErrorMessage = ({ error }: ErrorMessageProps) => {
   return (
     error && (
       <div>
